@@ -54,7 +54,12 @@ public class Target : MonoBehaviour
         if (byThePlayer)
             Settings.Score += 1;
         else
-            Settings.PlayerLife -= 1;
+        {
+            if(Settings.PlayerLife != 0)
+            {
+                Settings.PlayerLife -= 1;
+            }
+        }
         Destroy(gameObject);
 
     }

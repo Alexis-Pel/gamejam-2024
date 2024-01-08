@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject spawner in Spawners)
         {
             spawner.SetActive(!spawner.activeSelf);
+
         }
     }
 

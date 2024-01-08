@@ -5,10 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private Target target;
+    private bool ToRight;
 
     [SerializeField]
-    private bool ToRight;
+    private GameObject[] Targets;
 
     public GameManager gameManager;
 
@@ -27,7 +27,8 @@ public class Spawner : MonoBehaviour
 
     private void SpawnTarget()
     {
-        Target spawned = Instantiate(target, transform);
+        GameObject target = Targets[Random.Range(0, Targets.Length)];
+        Target spawned = Instantiate(target, transform).GetComponent<Target>();
         spawned.goRight = ToRight;
     }
 }
