@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private bool ToRight;
 
+    public GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +28,6 @@ public class Spawner : MonoBehaviour
     private void SpawnTarget()
     {
         Target spawned = Instantiate(target, transform);
-        if (ToRight)
-            spawned.Speed = Settings.TargetSpeed;
-        else
-            spawned.Speed = -Settings.TargetSpeed;
+        spawned.goRight = ToRight;
     }
 }

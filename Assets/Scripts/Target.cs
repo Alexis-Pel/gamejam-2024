@@ -5,23 +5,33 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField]
-    private int m_lives = 1;
+    private int m_lives;
+
+    private GameManager gameManager;
+
 
     private Rigidbody2D m_rigidbody;
     private float m_speed;
 
+    public bool goRight;
 
     // Start is called before the first frame update
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
-        Invoke(nameof(GetKilled), Settings.TargetLifeSpan);
+        Invoke(nameof(GetKilledByLifeSpan), Settings.TargetLifeSpan);
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_rigidbody.velocity = new Vector2(Speed, m_rigidbody.velocity.y);
+        Vector2 speed;
+        if(goRight)
+            speed = new Vector2(Settings.TargetSpeed, m_rigidbody.velocity.y);
+        else
+            speed = new Vector2(-Settings.TargetSpeed, m_rigidbody.velocity.y);
+
+        m_rigidbody.velocity = speed;
     }
 
     // Being shot at
@@ -30,19 +40,22 @@ public class Target : MonoBehaviour
         m_lives -= 1;
         if(m_lives == 0)
         {
-            GetKilled();
+            GetKilled(byThePlayer: true);
         }
     }
 
-    // Getter and Setter for the speed proprety
-    public float Speed
+    private void GetKilledByLifeSpan()
     {
-        get { return m_speed; }
-        set { m_speed = value; }
+        GetKilled(false);
     }
 
-    private void GetKilled()
+    private void GetKilled(bool byThePlayer)
     {
+        if (byThePlayer)
+            Settings.Score += 1;
+        else
+            Settings.PlayerLife -= 1;
         Destroy(gameObject);
+
     }
 }
