@@ -10,6 +10,6 @@ public static class Settings
 
     // Target
     public static float TargetSpeed = 0.5f;
-    public static float SpawnFreq = 1f;
+    public static float SpawnFreqMax = 6f;
     public static int TargetLifeSpan = 10;
 }

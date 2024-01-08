@@ -42,6 +42,10 @@ public class Target : MonoBehaviour
         {
             GetKilled(byThePlayer: true);
         }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     private void GetKilledByLifeSpan()

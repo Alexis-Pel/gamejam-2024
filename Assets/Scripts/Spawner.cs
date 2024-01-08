@@ -10,13 +10,16 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private GameObject[] Targets;
 
+    private float spawnTime;
+
     public GameManager gameManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating(nameof(SpawnTarget), Settings.SpawnFreq, Settings.SpawnFreq);
+        SetSpawnTime();
+        Invoke(nameof(SpawnTarget), spawnTime);
     }
 
     // Update is called once per frame
@@ -30,5 +33,12 @@ public class Spawner : MonoBehaviour
         GameObject target = Targets[Random.Range(0, Targets.Length)];
         Target spawned = Instantiate(target, transform).GetComponent<Target>();
         spawned.goRight = ToRight;
+        SetSpawnTime();
+        Invoke(nameof(SpawnTarget), spawnTime);
+    }
+
+    private void SetSpawnTime()
+    {
+        spawnTime = Random.Range(2, Settings.SpawnFreqMax);
     }
 }
