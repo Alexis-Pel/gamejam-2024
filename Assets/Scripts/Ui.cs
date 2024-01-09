@@ -41,7 +41,8 @@ public class UIScript : MonoBehaviour
     }
 
     private void StartGame()
-    
+    {
+
         gameManager.enabled = true;
         gameUI.SetActive(true);
         WallShield.SetActive(false);
