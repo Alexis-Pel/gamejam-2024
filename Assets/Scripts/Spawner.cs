@@ -39,6 +39,6 @@ public class Spawner : MonoBehaviour
 
     private void SetSpawnTime()
     {
-        spawnTime = Random.Range(2, Settings.SpawnFreqMax);
+        spawnTime = Random.Range(0, Settings.SpawnFreqMax);
     }
 }

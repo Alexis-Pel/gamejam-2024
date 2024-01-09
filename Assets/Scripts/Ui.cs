@@ -9,7 +9,13 @@ public class UIScript : MonoBehaviour
     private GameObject menuUI;
 
     [SerializeField]
+    private GameObject gameUI;
+
+    [SerializeField]
     private GameManager gameManager;
+
+    [SerializeField]
+    private GameObject WallShield;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +32,6 @@ public class UIScript : MonoBehaviour
     public void OnPlayClick()
     {
         menuUI.SetActive(false);
-        Camera.main.DOOrthoSize(1f, 3f).onComplete = () => { gameManager.enabled = true; };
+        Camera.main.DOOrthoSize(1f, 2f).onComplete = () => { gameManager.enabled = true; gameUI.SetActive(true); Destroy(WallShield); };
     }
 }
