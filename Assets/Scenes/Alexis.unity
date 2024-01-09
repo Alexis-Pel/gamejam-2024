@@ -341,6 +341,7 @@ MonoBehaviour:
   - {fileID: 465734974}
   ScoreValue: {fileID: 1750759557}
   LivesValue: {fileID: 1839897571}
+  crosshair: {fileID: 2800000, guid: c5f6f9dda01964d7ba2e901e522d587e, type: 3}
 --- !u!4 &110198703
 Transform:
   m_ObjectHideFlags: 0
@@ -797,7 +798,6 @@ GameObject:
   - component: {fileID: 716248784}
   - component: {fileID: 716248783}
   - component: {fileID: 716248782}
-  - component: {fileID: 716248785}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -879,19 +879,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &716248785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716248781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 193687314fd0d4cd78df36fa736fa881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &747592909 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1836883719752101592, guid: 2c1f51300360a4effa1fee424f2d33ce, type: 3}
