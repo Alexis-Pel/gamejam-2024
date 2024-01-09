@@ -9,38 +9,21 @@ public class Target : MonoBehaviour
 
     private GameManager gameManager;
 
-
     private Rigidbody2D m_rigidbody;
     private float m_speed;
 
     public bool goRight;
 
-    //VARIABLES URIEL
     [SerializeField]
-    private bool minusLife;
-    [SerializeField]
-    private bool plusLife;
-    [SerializeField]
-    private bool multiplier2x;
-    [SerializeField]
-    private bool tomatoes;
-    [SerializeField]
-    private bool speedPlus;
-    [SerializeField]
-    private bool speedMinus;
-    [SerializeField]
-    private bool slowmotion;
-    [SerializeField]
-    private float speedPlusValue;
-    [SerializeField]
-    private float speedMinusValue;
-
+    private TargetType type;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
         m_rigidbody = GetComponent<Rigidbody2D>();
-        Invoke(nameof(GetKilledByLifeSpan), Settings.TargetLifeSpan);
+        Invoke(nameof(activeRb), 0.5f);
+        // Invoke(nameof(GetKilledByLifeSpan), Settings.TargetLifeSpan);
     }
 
     // Update is called once per frame
@@ -53,31 +36,13 @@ public class Target : MonoBehaviour
             speed = new Vector2(-Settings.TargetSpeed, m_rigidbody.velocity.y);
 
         m_rigidbody.velocity = speed;
+
     }
 
     // Being shot at
     private void OnMouseDown()
     {
-        // CODE URIEL
-        if (minusLife)
-            Settings.PlayerLife--;
-
-        if (plusLife)
-            Settings.PlayerLife++;
-
-        if (multiplier2x)
-            Settings.ScoreMultiplier = 2;
-
-        if (speedPlus)
-            Settings.TargetSpeed += speedPlusValue;
-
-        if (speedMinus)
-            Settings.TargetSpeed -= speedMinusValue;
-
-        if (slowmotion)
-            Time.timeScale = 0f;
-
-
+        StartEvent();
         m_lives -= 1;
         if(m_lives == 0)
         {
@@ -89,12 +54,22 @@ public class Target : MonoBehaviour
         }
     }
 
+    private void activeRb()
+    {
+        GetComponent<Collider2D>().enabled = true;
+    }
+
+    private void StartEvent()
+    {
+        gameManager.startEvent(type);
+    }
+
     private void GetKilledByLifeSpan()
     {
         GetKilled(false);
     }
 
-    private void GetKilled(bool byThePlayer)
+    public void GetKilled(bool byThePlayer)
     {
         if (byThePlayer)
             Settings.Score += 1 * Settings.ScoreMultiplier;

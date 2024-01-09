@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] Spawners;
     public TMP_Text ScoreValue;
     public TMP_Text LivesValue;
+    private TargetType type;
 
     // CODE URIEL
-    public TMP_Text ScoreMultValue;
+    //public TMP_Text ScoreMultValue;
 
     private bool isPlaying = true;
 
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
         // CODE URIEL
         //if (Settings.ScoreMultiplier.ToString() != ScoreMultValue.text && isPlaying)
         //{
-        //    //UpdateScore();
+        //    UpdateScore();
         //}
 
         if (Settings.Score.ToString() != ScoreValue.text && isPlaying)
@@ -66,10 +67,81 @@ public class GameManager : MonoBehaviour
         ScoreValue.text = Settings.Score.ToString();
     }
 
-    public void UpdateScoreMultiplier()
+    public void startEvent(TargetType type)
     {
-        ScoreMultValue.text = Settings.ScoreMultiplier.ToString();
+        if(type == TargetType.normal || Settings.isEvent)
+        {
+            return;
+        }
+
+        Settings.isEvent = true;
+        switch (type)
+        {
+            case TargetType.loseLife:
+                Settings.PlayerLife--;
+                break;
+
+            case TargetType.gainLife:
+                Settings.PlayerLife++;
+                break;
+
+            case TargetType.multiplier:
+                Settings.ScoreMultiplier = 2;
+                break;
+
+            case TargetType.speedPlus:
+                Settings.TargetSpeed *= 2f;
+                break;
+
+            case TargetType.speedMinus:
+                Settings.TargetSpeed /= 2f;
+                break;
+
+            case TargetType.slowmotion:
+                Time.timeScale = 0f;
+                break;
+
+            default:
+                break;
+        }
+        this.type = type;
+        Invoke(nameof(endEvent), 3f);
     }
+
+
+    private void endEvent()
+    {
+        if (!Settings.isEvent)
+            return;
+        Settings.isEvent = false;
+        switch (type)
+        {
+            case TargetType.multiplier:
+                Settings.ScoreMultiplier = 1;
+                break;
+
+            case TargetType.speedPlus:
+                Settings.TargetSpeed /= 2f;
+                break;
+
+            case TargetType.speedMinus:
+                Settings.TargetSpeed *= 2f;
+                break;
+
+            case TargetType.slowmotion:
+                Time.timeScale = 1f;
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    //public void UpdateScoreMultiplier()
+    //{
+    //    ScoreMultValue.text = Settings.ScoreMultiplier.ToString();
+    //}
 
     public void UpdateLife()
     {
