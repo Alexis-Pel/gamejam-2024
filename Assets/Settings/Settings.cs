@@ -17,6 +17,10 @@ public static class Settings
     public static bool isEvent = false;
     public static int ScoreMultiplier = 1;
 
+
+    // NewGame
+    public static bool newGame = true;
+
 }
 
 public enum TargetType

@@ -17,23 +17,33 @@ public class UIScript : MonoBehaviour
     [SerializeField]
     private GameObject WallShield;
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!Settings.newGame)
+        {
+            Camera.main.orthographicSize = 1f;
+            menuUI.SetActive(false);
+            StartGame();
+        }
     }
 
     public void OnPlayClick()
     {
         menuUI.SetActive(false);
-        Camera.main.DOOrthoSize(1f, 2f).onComplete = () => { gameManager.enabled = true; gameUI.SetActive(true); Destroy(WallShield); };
+        Camera.main.DOOrthoSize(1f, 2f).onComplete = () => { StartGame(); };
+    }
+
+    public void GoToMenu()
+    {
+        gameManager.enabled = false;
+        WallShield.SetActive(true);
+        Camera.main.DOOrthoSize(2f, 2f).onComplete = () => { gameUI.SetActive(false);  };
+    }
+
+    private void StartGame()
+    {
+        gameManager.enabled = true;
+        gameUI.SetActive(true);
+        WallShield.SetActive(false);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -58,6 +59,23 @@ public class GameManager : MonoBehaviour
             spawner.SetActive(!spawner.activeSelf);
 
         }
+    }
+
+    private void ResetSettings()
+    {
+        Settings.PlayerLife = 3;
+        Settings.isEvent = false;
+        Settings.Score = 0;
+        Settings.ScoreMultiplier = 1;
+        Settings.TargetSpeed = 0.5f;
+        Settings.SpawnFreqMax = 6f;
+    }
+
+    private void RestartGame()
+    {
+        Settings.newGame = false;
+        ResetSettings();
+        SceneManager.LoadScene("Alexis");
     }
 
     private void GameOver()
