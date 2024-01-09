@@ -19,7 +19,8 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Score.text = Settings.Score.ToString();
+        Highscore.text = PlayerPrefs.GetInt("highscore").ToString();
     }
 
     // Update is called once per frame

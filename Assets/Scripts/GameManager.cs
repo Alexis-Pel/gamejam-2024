@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        if (Settings.Score > PlayerPrefs.GetInt("highscore"))
+            PlayerPrefs.SetInt("highscore", Settings.Score);
+
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         ui.endGameUI.SetActive(true);
@@ -96,6 +99,8 @@ public class GameManager : MonoBehaviour
 
         ui.score.SetActive(false);
         ui.lives.SetActive(false);
+
+
 
     }
 
