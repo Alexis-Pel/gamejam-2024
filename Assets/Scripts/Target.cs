@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Target : MonoBehaviour
 {
@@ -29,13 +30,16 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 speed;
-        if(goRight)
-            speed = new Vector2(Settings.TargetSpeed, m_rigidbody.velocity.y);
-        else
-            speed = new Vector2(-Settings.TargetSpeed, m_rigidbody.velocity.y);
+        if (m_lives > 0)
+        {
+            Vector2 speed;
+            if (goRight)
+                speed = new Vector2(Settings.TargetSpeed, m_rigidbody.velocity.y);
+            else
+                speed = new Vector2(-Settings.TargetSpeed, m_rigidbody.velocity.y);
 
-        m_rigidbody.velocity = speed;
+            m_rigidbody.velocity = speed;
+        }
 
     }
 
@@ -82,9 +86,18 @@ public class Target : MonoBehaviour
                     Debug.Log(' ');
                 else
                     Settings.PlayerLife -= 1;
+                m_lives = 0;
             }
         }
-        Destroy(gameObject);
+        m_rigidbody.velocity = Vector2.zero;
+        DeathAnimation();
 
+    }
+
+    private void DeathAnimation()
+    {
+        Destroy(m_rigidbody);
+        transform.DOMoveY(m_rigidbody.position.y - 0.25f, 0.5f).SetEase(Ease.InBack);
+        transform.DOScale(0, 1f).onComplete = () => { Destroy(gameObject); };
     }
 }

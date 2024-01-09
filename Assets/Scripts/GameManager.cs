@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text ScoreValue;
     public TMP_Text LivesValue;
     public Texture2D crosshair;
+    public UIScript ui;
 
     private TargetType type;
 
@@ -71,9 +73,16 @@ public class GameManager : MonoBehaviour
         Settings.SpawnFreqMax = 6f;
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         Settings.newGame = false;
+        ResetSettings();
+        SceneManager.LoadScene("Alexis");
+    }
+
+    public void Menu()
+    {
+        Settings.newGame = true;
         ResetSettings();
         SceneManager.LoadScene("Alexis");
     }
@@ -81,6 +90,12 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         print("GAME OVER SCORE: " + Settings.Score);
+        ui.endGameUI.SetActive(true);
+        ui.endGameUI.transform.DOScale(1f, 1.5f);
+
+        ui.score.SetActive(false);
+        ui.lives.SetActive(false);
+
     }
 
     public void UpdateScore()

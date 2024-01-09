@@ -5,11 +5,12 @@ using DG.Tweening;
 
 public class UIScript : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject menuUI;
+    public GameObject menuUI;
+    public GameObject gameUI;
+    public GameObject endGameUI;
 
-    [SerializeField]
-    private GameObject gameUI;
+    public GameObject score;
+    public GameObject lives;
 
     [SerializeField]
     private GameManager gameManager;
@@ -47,4 +48,15 @@ public class UIScript : MonoBehaviour
         gameUI.SetActive(true);
         WallShield.SetActive(false);
     }
+
+
+
+    //private void CameraShake()
+    //{
+    //    _collider.enabled = false;
+    //    _camera.shakeMagnitude = 0.3f;
+    //    _camera.desiredShakeDuration = 0.1f;
+    //    _camera.TriggerShake();
+    //    _camera.ResetSettings();
+    //}
 }
