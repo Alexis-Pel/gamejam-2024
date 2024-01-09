@@ -89,7 +89,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        print("GAME OVER SCORE: " + Settings.Score);
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
         ui.endGameUI.SetActive(true);
         ui.endGameUI.transform.DOScale(1f, 1.5f);
 
