@@ -74,16 +74,15 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Settings.isEvent = true;
         switch (type)
         {
             case TargetType.loseLife:
                 Settings.PlayerLife--;
-                break;
+                return;
 
             case TargetType.gainLife:
                 Settings.PlayerLife++;
-                break;
+                return;
 
             case TargetType.multiplier:
                 Settings.ScoreMultiplier = 2;
@@ -104,6 +103,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        Settings.isEvent = true;
         this.type = type;
         Invoke(nameof(endEvent), 3f);
     }

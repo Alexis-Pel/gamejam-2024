@@ -78,7 +78,10 @@ public class Target : MonoBehaviour
         {
             if(Settings.PlayerLife != 0)
             {
-                Settings.PlayerLife -= 1;
+                if (type == TargetType.loseLife)
+                    Debug.Log(' ');
+                else
+                    Settings.PlayerLife -= 1;
             }
         }
         Destroy(gameObject);
