@@ -8,4 +8,5 @@ public class WaveScriptable : ScriptableObject
     // Enemies info
     public GameObject[] targets;
     public float enemyRateMax;
+    public bool actived = false;
 }

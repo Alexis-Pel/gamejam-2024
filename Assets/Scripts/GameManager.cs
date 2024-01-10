@@ -77,14 +77,14 @@ public class GameManager : MonoBehaviour
     {
         Settings.newGame = false;
         ResetSettings();
-        SceneManager.LoadScene("Alexis");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
         Settings.newGame = true;
         ResetSettings();
-        SceneManager.LoadScene("Alexis");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void GameOver()

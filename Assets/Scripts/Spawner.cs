@@ -13,25 +13,37 @@ public class Spawner : MonoBehaviour
 
     public GameManager gameManager;
 
-    public WaveScriptable[] waves;
+    public List<WaveScriptable> waves;
+
 
     private int WaveIndex = 0;
 
+    private void Awake()
+    {
+        foreach (var item in waves)
+        {
+            item.actived = false;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Settings.SpawnFreqMax = waves[WaveIndex].enemyRateMax;
-        Targets = waves[WaveIndex].targets;
+        Settings.SpawnFreqMax = waves[0].enemyRateMax;
+        Targets = waves[0].targets;
+        waves[0].actived = true;
         SetSpawnTime();
         Invoke(nameof(SpawnTarget), spawnTime);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
-        if(Settings.Score >= 10 && WaveIndex < 1)
+        int a = Settings.Score / 25;
+        if (Settings.Score > 0 && a != 0 && !waves[a].actived)
         {
+            print("NEW WAVE");
+            waves[a].actived = true;
             ChangeWave();
         }
     }
