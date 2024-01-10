@@ -7,17 +7,22 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private bool ToRight;
 
-    [SerializeField]
     private GameObject[] Targets;
 
     private float spawnTime;
 
     public GameManager gameManager;
 
+    public WaveScriptable[] waves;
+
+    private int WaveIndex = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        Settings.SpawnFreqMax = waves[WaveIndex].enemyRateMax;
+        Targets = waves[WaveIndex].targets;
         SetSpawnTime();
         Invoke(nameof(SpawnTarget), spawnTime);
     }
@@ -25,7 +30,10 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Settings.Score >= 10 && WaveIndex < 1)
+        {
+            ChangeWave();
+        }
     }
 
     private void SpawnTarget()
@@ -40,5 +48,12 @@ public class Spawner : MonoBehaviour
     private void SetSpawnTime()
     {
         spawnTime = Random.Range(1, Settings.SpawnFreqMax);
+    }
+
+    private void ChangeWave()
+    {
+        WaveIndex += 1;
+        Settings.SpawnFreqMax = waves[WaveIndex].enemyRateMax;
+        Targets = waves[WaveIndex].targets;
     }
 }
