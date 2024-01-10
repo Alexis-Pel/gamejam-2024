@@ -97,7 +97,7 @@ public class Target : MonoBehaviour
     private void DeathAnimation()
     {
         Destroy(m_rigidbody);
-        transform.DOMoveY(m_rigidbody.position.y - 0.25f, 0.5f).SetEase(Ease.InBack);
+        transform.DOMoveY(m_rigidbody.position.y - 0.1f, 0.5f).SetEase(Ease.InBack);
         transform.DOScale(0, 1f).onComplete = () => { Destroy(gameObject); };
     }
 }
