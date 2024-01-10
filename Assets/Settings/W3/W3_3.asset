@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3421aa6a2554661bfa2dd16c398a09, type: 3}
+  m_Name: W3_3
+  m_EditorClassIdentifier: 
+  targets:
+  - {fileID: 3483538063487760972, guid: c2ebfade892963e49ac35bd75a6a2186, type: 3}
+  - {fileID: 3483538063487760972, guid: c2ebfade892963e49ac35bd75a6a2186, type: 3}
+  - {fileID: 3483538063487760972, guid: c2ebfade892963e49ac35bd75a6a2186, type: 3}
+  - {fileID: 5130385854872360962, guid: 3692579dfe253f34d9e5926d7b4bea34, type: 3}
+  - {fileID: 8591888043789990193, guid: 1b96ce8024f96f740bb66530b14bcb41, type: 3}
+  - {fileID: 1483462538704318769, guid: c0ba9b47ba085f347a4fdc199f94b458, type: 3}
+  - {fileID: 1483462538704318769, guid: ffb591d00537bb34d8b7c3e6b1889460, type: 3}
+  enemyRateMax: 5
