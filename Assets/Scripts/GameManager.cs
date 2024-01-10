@@ -13,7 +13,13 @@ public class GameManager : MonoBehaviour
     public Texture2D crosshair;
     public UIScript ui;
 
+    public AudioSource EventAudioSource;
+    public AudioSource MusicAudioSource;
+    public AudioSource AmbianceAudioSource;
+
     private TargetType type;
+
+
 
     // CODE URIEL
     //public TMP_Text ScoreMultValue;
@@ -25,6 +31,8 @@ public class GameManager : MonoBehaviour
     {
         Cursor.SetCursor(crosshair, new Vector2(16f, 16f), CursorMode.Auto);
         EnabledSpawners();
+        AmbianceAudioSource.DOFade(0.4f, 1f);
+        MusicAudioSource.Play();
     }
 
     // Update is called once per frame
@@ -89,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        MusicAudioSource.DOFade(0.2f, 1f);
         if (Settings.Score > PlayerPrefs.GetInt("highscore"))
             PlayerPrefs.SetInt("highscore", Settings.Score);
 
@@ -145,6 +154,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        EventAudioSource.Play();
         Settings.isEvent = true;
         this.type = type;
         Invoke(nameof(endEvent), 3f);
@@ -200,6 +210,11 @@ public class GameManager : MonoBehaviour
     private void UpdateSpeed(float speed)
     {
         TargetSpeed = speed;
+    }
+
+    private void OnDestroy()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
 }

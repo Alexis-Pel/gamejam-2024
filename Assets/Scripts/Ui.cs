@@ -26,6 +26,7 @@ public class UIScript : MonoBehaviour
             menuUI.SetActive(false);
             StartGame();
         }
+        endGameUI.GetComponent<EndGame>().WallShield = WallShield;
     }
 
     public void OnPlayClick()
@@ -37,7 +38,6 @@ public class UIScript : MonoBehaviour
     public void GoToMenu()
     {
         gameManager.enabled = false;
-        WallShield.SetActive(true);
         Camera.main.DOOrthoSize(2f, 2f).onComplete = () => { gameUI.SetActive(false);  };
     }
 

@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     public GameManager gameManager;
 
     public List<WaveScriptable> waves;
+    public AudioSource ShotAudioSource;
 
 
     private int WaveIndex = 0;
@@ -53,6 +54,7 @@ public class Spawner : MonoBehaviour
         GameObject target = Targets[Random.Range(0, Targets.Length)];
         Target spawned = Instantiate(target, transform).GetComponent<Target>();
         spawned.goRight = ToRight;
+        spawned.ShotAudioSource = ShotAudioSource;
         SetSpawnTime();
         Invoke(nameof(SpawnTarget), spawnTime);
     }

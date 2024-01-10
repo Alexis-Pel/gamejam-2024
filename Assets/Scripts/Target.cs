@@ -13,6 +13,8 @@ public class Target : MonoBehaviour
     private Rigidbody2D m_rigidbody;
     private float m_speed;
 
+    public AudioSource ShotAudioSource;
+
     public bool goRight;
 
     [SerializeField]
@@ -46,6 +48,7 @@ public class Target : MonoBehaviour
     // Being shot at
     private void OnMouseDown()
     {
+        ShotAudioSource.Play();
         StartEvent();
         m_lives -= 1;
         if(m_lives == 0)

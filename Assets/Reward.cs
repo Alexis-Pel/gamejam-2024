@@ -10,7 +10,8 @@ public class Reward : MonoBehaviour
     public Image plushPlaceholder;
     public Sprite[] plushes;
     public GameObject endImage;
-    
+    public AudioSource PlushAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Reward : MonoBehaviour
             plushPlaceholder.sprite = plushes[index];
             plushPlaceholder.DOFade(1f, 1f);
             backImage.DOFade(1f, 1f);
+            PlushAudioSource.Play();
         }
         else
         {

@@ -4,20 +4,11 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioSource shotAudio;
 
     private void OnMouseDown()
     {
+        shotAudio.Play();
         Settings.Score -= 2;
     }
 }

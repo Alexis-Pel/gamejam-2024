@@ -14,6 +14,7 @@ public class EndGame : MonoBehaviour
     [SerializeField]
     private TMP_Text Highscore;
 
+    public GameObject WallShield;
 
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class EndGame : MonoBehaviour
     {
         Score.text = Settings.Score.ToString();
         Highscore.text = PlayerPrefs.GetInt("highscore").ToString();
+        WallShield.SetActive(true);
     }
 
     // Update is called once per frame
